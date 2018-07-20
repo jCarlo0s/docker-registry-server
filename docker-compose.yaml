@@ -16,3 +16,9 @@ services:
       REGISTRY_STORAGE_FILESYSTEM_ROOTDIRECTORY: /data
     volumes:
       - ./data:/data
+  registry-ui:
+    image: joxit/docker-registry-ui:latest
+    ports:
+      - '80:80'
+    environment:
+      REGISTRY_URL: 'http://127.0.0.1:5000'
