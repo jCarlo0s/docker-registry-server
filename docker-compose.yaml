@@ -18,7 +18,12 @@ services:
       - ./data:/data
   registry-ui:
     image: joxit/docker-registry-ui:latest
+    restart: always
+    links:
+      - registry
     ports:
       - '80:80'
     environment:
-      REGISTRY_URL: 'http://127.0.0.1:5000'
+      VIRTUAL_HOST: '*, https://*'
+      ENV_DOCKER_REGISTRY_HOST: 'registry'
+      ENV_DOCKER_REGISTRY_PORT: 5000
